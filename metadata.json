@@ -1,6 +1,5 @@
 {
-  "name": "Bellbullet AI Labs",
-  "description": "AI experiments, open-source tools, and interactive demos by Bellbullet.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "name": "BellBullet AI Workspace",
+  "description": "AIで考え、AIで作り、AIで育てる。BellBulletのプロジェクト、AIアプリ、実験、共有知識をまとめたポータル。",
+  "requestFramePermissions": []
 }
