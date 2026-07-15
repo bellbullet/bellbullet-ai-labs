@@ -1,20 +1,28 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# BellBullet AI Workspace
 
-# Run and deploy your AI Studio app
+「AIで考え、AIで作り、AIで育てる。」
 
-This contains everything you need to run your app locally.
+BellBulletのプロジェクト、AIアプリ、共有知識、実験記録を一つにつなぐWorkspace Portalです。
 
-View your app in AI Studio: https://ai.studio/apps/7ff858a9-01d6-457c-a9b9-457ace7a45ed
+- Public site: https://bellbullet.ai.studio/
+- Knowledge Base: https://bellbullet.github.io/ai-shared-memory/
+- AI Studio project: https://ai.studio/apps/7ff858a9-01d6-457c-a9b9-457ace7a45ed
 
 ## Run Locally
 
 **Prerequisites:**  Node.js
 
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```powershell
+cd D:\Codex\Projects\bellbullet-ai-labs
+npm.cmd install
+npm.cmd run dev
+```
+
+## Validate
+
+```powershell
+cd D:\Codex\Projects\bellbullet-ai-labs
+npm.cmd run lint
+npm.cmd run build
+```
