@@ -29,7 +29,25 @@ type Project = {
   docs?: string;
 };
 
+type HubProject = {
+  name: string;
+  status: "Published" | "Active" | "In Development" | "Research";
+  builtWith: string;
+  nextAction: string;
+  site?: string;
+  github?: string;
+  docs?: string;
+};
+
 const portalLinks = [
+  {
+    icon: Bot,
+    eyebrow: "CONTROL",
+    title: "AI Hub",
+    description: "AI作業とプロジェクトの管制室",
+    href: "#ai-hub",
+    accent: "from-indigo-500/20 to-indigo-500/0 text-indigo-300",
+  },
   {
     icon: Rocket,
     eyebrow: "BUILD",
@@ -62,6 +80,56 @@ const portalLinks = [
     href: "#experiments",
     accent: "from-emerald-500/20 to-emerald-500/0 text-emerald-300",
   },
+];
+
+const hubProjects: HubProject[] = [
+  {
+    name: "bellbullet-ai-labs",
+    status: "Published",
+    builtWith: "Google AI Studio + Codex",
+    nextAction: "公開後の更新負荷を観察",
+    site: "https://bellbullet.ai.studio/",
+    github: "https://github.com/bellbullet/bellbullet-ai-labs",
+  },
+  {
+    name: "Screenshot Stitcher",
+    status: "Published",
+    builtWith: "Codex",
+    nextAction: "実画像で操作性を継続確認",
+    site: "https://screenshot-stitcher-cm3u.vercel.app",
+    github: "https://github.com/bellbullet/screenshot-stitcher",
+    docs: `${KNOWLEDGE_BASE}/PROJECTS/ScreenshotStitcher`,
+  },
+  {
+    name: "AI Shared Memory",
+    status: "Active",
+    builtWith: "GitHub + Multi-AI",
+    nextAction: "登録候補の試用結果を蓄積",
+    github: "https://github.com/bellbullet/ai-shared-memory",
+    docs: KNOWLEDGE_BASE,
+  },
+  {
+    name: "GameFreezeSentinel",
+    status: "In Development",
+    builtWith: "Codex",
+    nextAction: "次の公開可能な作業を整理",
+    docs: `${KNOWLEDGE_BASE}/PROJECTS/GameFreezeSentinel`,
+  },
+  {
+    name: "AIRI",
+    status: "Research",
+    builtWith: "AI Shared Memory",
+    nextAction: "Goal・Stack・検証範囲を定義",
+    docs: `${KNOWLEDGE_BASE}/PROJECTS/AIRI`,
+  },
+];
+
+const aiTools = [
+  { name: "ChatGPT", role: "企画・整理", href: "https://chatgpt.com/" },
+  { name: "Codex", role: "実装・検証" },
+  { name: "Google AI Studio", role: "試作・生成", href: "https://aistudio.google.com/" },
+  { name: "Claude", role: "レビュー・比較", href: "https://claude.ai/" },
+  { name: "GitHub", role: "原本・公開", href: GITHUB_PROFILE },
 ];
 
 const projects: Project[] = [
@@ -190,6 +258,7 @@ export default function App() {
           <nav className="hidden items-center gap-1 lg:flex" aria-label="メインナビゲーション">
             {[
               ["Projects", "#projects"],
+              ["AI Hub", "#ai-hub"],
               ["Apps", "#apps"],
               ["Knowledge", "#knowledge"],
               ["Experiments", "#experiments"],
@@ -249,7 +318,7 @@ export default function App() {
         </section>
 
         <section id="workspace" className="scroll-mt-24 border-y border-white/[0.06] bg-white/[0.015]">
-          <div className="mx-auto grid max-w-7xl gap-4 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-4 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-5 lg:px-8">
             {portalLinks.map((item) => {
               const Icon = item.icon;
               return (
@@ -267,6 +336,81 @@ export default function App() {
                 </a>
               );
             })}
+          </div>
+        </section>
+
+        <section id="ai-hub" className="scroll-mt-24 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+          <SectionHeading
+            label="AI HUB LITE / PHASE 01"
+            title="AI開発の管制室"
+            description="どのAIで、どのプロジェクトを、どこまで進めたか。認証やAPI接続を増やさず、まず作業の現在地を一か所に集めます。"
+          />
+
+          <div className="grid gap-4 lg:grid-cols-[1.5fr_0.75fr]">
+            <div className="grid gap-3 sm:grid-cols-2">
+              {hubProjects.map((project) => (
+                <article key={project.name} className="rounded-2xl border border-indigo-400/10 bg-[#090d1d]/80 p-5">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="font-display text-lg font-black text-white">{project.name}</p>
+                      <p className="mt-1 font-mono text-[9px] tracking-[0.12em] text-slate-500">{project.builtWith}</p>
+                    </div>
+                    <span className="rounded-full bg-indigo-500/10 px-2.5 py-1 font-mono text-[8px] font-bold tracking-[0.1em] text-indigo-200">
+                      {project.status.toUpperCase()}
+                    </span>
+                  </div>
+                  <div className="mt-5 border-t border-white/[0.06] pt-4">
+                    <p className="font-mono text-[9px] font-bold tracking-[0.14em] text-slate-600">NEXT ACTION</p>
+                    <p className="mt-2 text-xs leading-5 text-slate-300">{project.nextAction}</p>
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-4 font-mono text-[9px] font-bold tracking-[0.1em]">
+                    <ProjectAction href={project.site} label="SITE" />
+                    <ProjectAction href={project.github} label="GITHUB" />
+                    <ProjectAction href={project.docs} label="DOCS" />
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="grid content-start gap-4">
+              <aside className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
+                <p className="font-mono text-[10px] font-bold tracking-[0.18em] text-fuchsia-300">AI TOOLS</p>
+                <div className="mt-4 divide-y divide-white/[0.06]">
+                  {aiTools.map((tool) => {
+                    const content = (
+                      <>
+                        <span className="text-sm font-bold text-slate-200">{tool.name}</span>
+                        <span className="text-[10px] text-slate-500">{tool.role}</span>
+                      </>
+                    );
+
+                    return tool.href ? (
+                      <a key={tool.name} href={tool.href} target="_blank" rel="noreferrer" className="flex items-center justify-between py-3 hover:text-white">
+                        {content}
+                      </a>
+                    ) : (
+                      <div key={tool.name} className="flex items-center justify-between py-3">
+                        {content}
+                      </div>
+                    );
+                  })}
+                </div>
+              </aside>
+
+              <aside className="rounded-2xl border border-emerald-400/10 bg-emerald-500/[0.04] p-5">
+                <p className="font-mono text-[10px] font-bold tracking-[0.18em] text-emerald-300">CURRENT WORK</p>
+                <h3 className="mt-4 font-display text-xl font-black text-white">AI Hub Lite MVP</h3>
+                <dl className="mt-5 grid gap-3 text-xs">
+                  <div className="flex justify-between gap-4"><dt className="text-slate-500">Updated</dt><dd className="text-slate-300">2026-07-16</dd></div>
+                  <div className="flex justify-between gap-4"><dt className="text-slate-500">Source</dt><dd className="text-slate-300">Static data</dd></div>
+                  <div className="flex justify-between gap-4"><dt className="text-slate-500">Publish</dt><dd className="text-emerald-300">Portal update</dd></div>
+                </dl>
+                <a href={`${KNOWLEDGE_BASE}/PROJECTS/AIHub`} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 text-xs font-bold text-white">
+                  Open Documentation
+                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </a>
+              </aside>
+            </div>
           </div>
         </section>
 
