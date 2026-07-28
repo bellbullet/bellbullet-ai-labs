@@ -130,7 +130,7 @@ export const hubProjects: HubProject[] = [
     name: "Screenshot Stitcher",
     status: "Published",
     builtWith: "Codex",
-    nextAction: "実画像で操作性を継続確認",
+    nextAction: "画像追加20枚上限を実装・検証",
     site: siteLinks.screenshotStitcher,
     github: "https://github.com/bellbullet/screenshot-stitcher",
     docs: `${siteLinks.knowledgeBase}/PROJECTS/ScreenshotStitcher`,
@@ -139,7 +139,7 @@ export const hubProjects: HubProject[] = [
     name: "AI Shared Memory",
     status: "Active",
     builtWith: "GitHub + Multi-AI",
-    nextAction: "登録候補の試用結果を蓄積",
+    nextAction: "検証済みの知識とTrial記録を更新",
     github: "https://github.com/bellbullet/ai-shared-memory",
     docs: siteLinks.knowledgeBase,
   },
@@ -154,7 +154,7 @@ export const hubProjects: HubProject[] = [
     name: "AIRI",
     status: "Research",
     builtWith: "AI Shared Memory",
-    nextAction: "Goal・Stack・検証範囲を定義",
+    nextAction: "依存関係を再構築し、連携の検証範囲を確認",
     docs: `${siteLinks.knowledgeBase}/PROJECTS/AIRI`,
   },
 ];
@@ -185,7 +185,7 @@ export const projects: Project[] = [
   },
   {
     name: "AIRI",
-    description: "AIアバターとエージェント体験をつなぐ研究プロジェクト。",
+    description: "Web・Desktop・Minecraft連携を安全に検証するAIアバター研究プロジェクト。",
     status: "Coming Soon",
     iconClass: "border-fuchsia-400/20 bg-fuchsia-500/10 text-fuchsia-300",
     docs: `${siteLinks.knowledgeBase}/PROJECTS/AIRI`,
@@ -207,9 +207,10 @@ export const knowledgeItems = [
 ] as const;
 
 export const updates = [
-  { date: "2026-07-15", title: "AI Workspace Portal started", kind: "PORTAL" },
-  { date: "2026-07-15", title: "Added AI_DRAWERS", kind: "KNOWLEDGE" },
-  { date: "2026-07-14", title: "Released Screenshot Stitcher", kind: "RELEASE" },
+  { date: "2026-07-29", title: "Refreshed AI Shared Memory", kind: "KNOWLEDGE" },
+  { date: "2026-07-29", title: "Recorded project trials and workspace status", kind: "TRIALS" },
+  { date: "2026-07-17", title: "Published Bellbullet Workspace MVP", kind: "PORTAL" },
+  { date: "2026-07-16", title: "Prepared Screenshot Stitcher 20-image trial", kind: "TRIALS" },
 ] as const;
 
 export const apps: AIApp[] = [
@@ -221,19 +222,20 @@ export const apps: AIApp[] = [
 
 export const experiments = [
   { number: "01", title: "AI Workspace Portal", description: "活動、知識、アプリを一つの入口へ集約する。" },
-  { number: "02", title: "AI Shared Memory", description: "複数のAIが同じ文脈を読み、育てられる仕組み。" },
-  { number: "03", title: "Screenshot Stitcher vNext", description: "横方向を含むマルチ方向の画像連結を検証中。" },
+  { number: "02", title: "AI Shared Memory", description: "公開知識と検証済みのTrialを、複数のAIと人で育てる。" },
+  { number: "03", title: "Screenshot Stitcher 20-image limit", description: "画像追加上限と、実装・レビュー・再検証の流れを検証中。" },
+  { number: "04", title: "Claude Code Desktop session title refresh", description: "公開安全な環境で、セッションタイトル更新の有効性と副作用を確認予定。" },
 ] as const;
 
 export const currentFocus = {
-  title: "AI Hub Lite MVP",
-  summary: "AI作業とプロジェクトの現在地を一か所で確認する静的Hub。",
-  updated: "2026-07-16",
-  source: "Static data",
-  publish: "Portal update",
+  title: "Bellbullet Workspace MVP",
+  summary: "公開済みWorkspaceを観察しながら、AI Shared Memoryの検証済み状態を静的Hubへ同期。",
+  updated: "2026-07-29",
+  source: "AI Shared Memory",
+  publish: "Static portal update",
   status: "Public / Observing",
-  recentUpdate: "Phase 01 published",
-  nextAction: "公開後の更新負荷を観察",
+  recentUpdate: "Shared Memory sync",
+  nextAction: "更新負荷を観察し、必要時のみPhase 02を検討",
   docs: `${siteLinks.knowledgeBase}/PROJECTS/AIHub`,
 } as const;
 
